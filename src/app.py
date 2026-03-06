@@ -5,17 +5,17 @@ def SimularFPC():
 
     
     
-    equipos= [{"id": 0,"nombre": "Junior FC",}, {"id": 1,"nombre": "América de Cali",}, {"id": 2,"nombre": "Alianza FC",}, {"id": 3,"nombre": "Atlético Nacional",},
-              {"id": 4,"nombre": "Boyacá Chico",}, {"id": 5,"nombre": "Bucaramanga",}, {"id": 6,"nombre": "Cúcuta Deportivo",}, {"id": 7,"nombre": "Deportes Tolima",},              
-              {"id": 8,"nombre": "Deportivo Cali",}, {"id": 9,"nombre": "Deportivo Pasto",}, {"id": 10,"nombre": "Deportivo Pereira",}, {"id": 11,"nombre": "Fortaleza CEIF",},
-              {"id": 12,"nombre": " Independiente Medellín",}, {"id": 13,"nombre": "Independiente Santa Fe",}, {"id": 14,"nombre": "Internacional de Bogotá",}, {"id": 15,"nombre": "Jaguares de Córdoba",},
-              {"id": 16,"nombre": "Llaneros FC",}, {"id": 17,"nombre": "Millonarios FC",}, {"id": 18,"nombre": "Once Caldas",}, {"id": 19,"nombre": "Águilas Doradas",}]
+    equipos= [{"id": 0,"nombre": "Junior FC", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 1,"nombre": "América de Cali", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 2,"nombre": "Alianza FC", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 3,"nombre": "Atlético Nacional", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0},
+              {"id": 4,"nombre": "Boyacá Chico", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 5,"nombre": "Bucaramanga", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 6,"nombre": "Cúcuta Deportivo", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 7,"nombre": "Deportes Tolima", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0},              
+              {"id": 8,"nombre": "Deportivo Cali", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 9,"nombre": "Deportivo Pasto", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 10,"nombre": "Deportivo Pereira", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 11,"nombre": "Fortaleza CEIF", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0},
+              {"id": 12,"nombre": " Independiente Medellín", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 13,"nombre": "Independiente Santa Fe", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 14,"nombre": "Internacional de Bogotá", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 15,"nombre": "Jaguares de Córdoba", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0},
+              {"id": 16,"nombre": "Llaneros FC", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 17,"nombre": "Millonarios FC", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 18,"nombre": "Once Caldas", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}, {"id": 19,"nombre": "Águilas Doradas", "PG": 0, "PP": 0, "PE": 0, "GF": 0, "GC": 0, "DG": 0}]
     
    
     partidos_junior= []
     partidos_otros= []
 
-    id_equipo_= 0
+ 
     id_partido= 0
 
     partidos_ganados_junior= 0
@@ -54,8 +54,8 @@ def SimularFPC():
 
                     
                     
-                    i= 0
-                    for i in range(len(equipos)+1):
+                    i= 1
+                    for i in range(len(equipos)):
 
                         
     
@@ -111,10 +111,10 @@ def SimularFPC():
                         local= random.choice([True, False])
                         if local:
                             nombre_local= "Junior FC"
-                            nombre_visita= equipos[i]["nombre"]
+                            nombre_visita= equipos[i+1]["nombre"]
                             junior_local= True
                         else:
-                            nombre_local= equipos[i]["nombre"]
+                            nombre_local= equipos[i+1]["nombre"]
                             nombre_visita= "Junior FC"
                             junior_local= False
 
@@ -148,13 +148,28 @@ def SimularFPC():
 
 
                         equipo_local= random.choice([True, False])
+
                         if equipo_local:
-                            nombre_local_otro= equipos[i]["nombre"]
-                            nombre_visita_otro= equipos[i]["nombre"]
+
+                            idx_local = random.randint(0, len(equipos)-1)
+                            idx_visita = random.randint(0, len(equipos)-1)
+
+                            while idx_visita == idx_local:
+                                idx_visita = random.randint(0, len(equipos)-1)
+
+                            nombre_local_otro= equipos[idx_local]["nombre"]
+                            nombre_visita_otro= equipos[idx_visita]["nombre"]
                             
                         else:
-                            nombre_local_otro= equipos[i]["nombre"]
-                            nombre_visita_otro= equipos[i]["nombre"]
+                            idx_visita = random.randint(0, len(equipos)-1)
+                            idx_local = random.randint(0, len(equipos)-1)
+
+
+                            while idx_local == idx_visita:
+                                idx_local = random.randint(0, len(equipos)-1)
+
+                            nombre_local_otro= equipos[idx_local]["nombre"]
+                            nombre_visita_otro= equipos[idx_visita]["nombre"]
                             
 
 
@@ -166,15 +181,18 @@ def SimularFPC():
 
                         if gol_local_otro > gol_visita_otro:
                             resultado= "Ganó local"
-                            equipos[i]["PG"] += 1
+                            equipos[idx_local]["PG"] += 1
+                            equipos[idx_visita]["PP"] += 1
 
                         elif gol_local_otro < gol_visita_otro:
                             resultado= "Ganó visita"
-                            equipos[i]["PP"] += 1
+                            equipos[idx_visita]["PG"] += 1
+                            equipos[idx_local]["PP"] += 1
 
                         else:
                             resultado= "Empate"
-                            equipos[i]["PE"] += 1
+                            equipos[idx_local]["PE"] += 1
+                            equipos[idx_visita]["PE"] += 1
 
 
                         partido_otro = {
@@ -188,27 +206,24 @@ def SimularFPC():
 
                         partidos_otros.append(partido_otro)
 
-                        
-                        for equipo in len(equipos):
 
-                            equipos_otros= {
-
-                                "GF": 0,
-                                "GC": 0,
-                                "DG": 0,
-                                "resultado": resultado,
-                                "PG": 0,
-                                "PP": 0,
-                                "PE": 0,
-                                "campeón": None
-
-                            }
-
-                            equipo[i]["equipos"].append(equipos_otros)
 
                     
                         i+=1
+
+
+
                         
+                    print("Simulación de partidos finalizada. Mostrando tabla de clasificación...")
+                    time.sleep(2)
+
+                    equipos_ordenados= sorted(equipos, key=lambda x: (x["PG"], x["DG"]), reverse=True)
+
+                    print("|----------------- TABLA DE CLASIFICACIÓN -----------------|")
+                    print("| EQUIPO | PJ | PG | PP | PE | GF | GC | DG | PUNTOS |")
+                    for equipo in equipos_ordenados:
+                        puntos= equipo["PG"]*3 + equipo["PE"]
+                        print(f"| {equipo['nombre']} | {equipo['PJ']} | {equipo['PG']} | {equipo['PP']} | {equipo['PE']} | {equipo['GF']} | {equipo['GC']} | {equipo['DG']} | {puntos} |")
 
 
 
@@ -224,3 +239,7 @@ def SimularFPC():
             print("{error}: No coincide el tipo de dato.")
 
 SimularFPC()
+
+
+
+    
